@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TryingNet5.data;
 
 namespace TryingNet5.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220212134918_addHotel")]
+    partial class addHotel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,26 +36,6 @@ namespace TryingNet5.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Tunisia",
-                            ShortName = "TN"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "France",
-                            ShortName = "FR"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Algeria",
-                            ShortName = "DZ"
-                        });
                 });
 
             modelBuilder.Entity("TryingNet5.data.Hotel", b =>
@@ -80,16 +62,6 @@ namespace TryingNet5.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Hotels");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "address hotel 1",
-                            CountryId = 1,
-                            Name = "hotel 1",
-                            Rating = 2.0
-                        });
                 });
 
             modelBuilder.Entity("TryingNet5.data.Hotel", b =>

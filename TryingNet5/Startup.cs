@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TryingNet5.data;
+using TryingNet5.IRepository;
+using TryingNet5.Repository;
 
 namespace TryingNet5
 {
@@ -40,7 +42,7 @@ namespace TryingNet5
                     .AllowAnyMethod();
                 });
             });
-
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

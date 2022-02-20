@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TryingNet5.data;
 using TryingNet5.IRepository;
 
@@ -10,13 +11,9 @@ namespace TryingNet5.Repository
         private IGenericRepository<Country> _countries;
         private IGenericRepository<Hotel> _hotels;
 
-        public UnitOfWork(DataBaseContext context,
-         IGenericRepository<Country> countries,
-         IGenericRepository<Hotel> hotels)
+        public UnitOfWork(DataBaseContext context)
         {
             _context = context;
-            _countries = countries;
-            _hotels = hotels;
         }
         public IGenericRepository<Country> Countries => _countries ??= new GenericRepository<Country>(_context);
 
@@ -26,6 +23,11 @@ namespace TryingNet5.Repository
         {
             _context.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public async Task Save()
+        {
+            await _context.SaveChangesAsync();
         }
     }
 }

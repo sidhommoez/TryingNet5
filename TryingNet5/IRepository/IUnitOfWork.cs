@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TryingNet5.data;
 
 namespace TryingNet5.IRepository
@@ -7,5 +8,6 @@ namespace TryingNet5.IRepository
     {
         IGenericRepository<Country> Countries { get; }
         IGenericRepository<Hotel> Hotels { get; }
+        Task Save();
     }
 }

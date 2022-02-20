@@ -45,11 +45,13 @@ namespace TryingNet5
             });
             services.AddAutoMapper(typeof(MapperInitilizer));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TryingNet5", Version = "v1" });
             });
+
+            services.AddControllers().AddNewtonsoftJson(op => 
+            op.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore) ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
